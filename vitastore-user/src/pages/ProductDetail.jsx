@@ -1,0 +1,97 @@
+import { Link, useParams } from "react-router-dom";
+import Navbar from "../components/Navbar";
+
+export default function ProductDetail() {
+  const { id } = useParams();
+  const productMap = {
+    1: {
+      name: "Vitamin C Plus",
+      price: "200.000đ",
+      image:
+        "https://images.unsplash.com/photo-1584017911766-d451b3d0e843?auto=format&fit=crop&w=900&q=80",
+      summary:
+        "Vitamin C hàm lượng cao kết hợp citrus bioflavonoids, phù hợp giai đoạn cần tăng đề kháng.",
+      details: ["60 viên nang", "Dùng 1-2 viên/ngày", "Xuất xứ đạt chuẩn GMP"],
+    },
+    2: {
+      name: "Omega Balance",
+      price: "320.000đ",
+      image:
+        "https://images.unsplash.com/photo-1577401239170-897942555fb3?auto=format&fit=crop&w=900&q=80",
+      summary:
+        "Omega 3 tinh lọc hướng đến hỗ trợ tim mạch và duy trì sự tỉnh táo khi làm việc cường độ cao.",
+      details: [
+        "90 viên mềm",
+        "Không mùi tanh gắt",
+        "Phù hợp dùng sau bữa sáng",
+      ],
+    },
+    3: {
+      name: "Collagen Glow",
+      price: "450.000đ",
+      image:
+        "https://images.unsplash.com/photo-1611071536599-2726d2eb7f00?auto=format&fit=crop&w=900&q=80",
+      summary:
+        "Collagen peptide kết hợp vitamin C, phù hợp routine chăm sóc da và tóc hàng ngày.",
+      details: [
+        "30 gói tiện lợi",
+        "Hương berry nhẹ",
+        "Kết hợp tốt với chế độ ngủ đủ",
+      ],
+    },
+    4: {
+      name: "Sleep Reset",
+      price: "280.000đ",
+      image:
+        "https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=900&q=80",
+      summary:
+        "Công thức thư giãn nhẹ với melatonin và thảo mộc, phù hợp cho người cần ổn định nhịp ngủ.",
+      details: [
+        "45 viên",
+        "Dùng trước khi ngủ 30 phút",
+        "Không gây cảm giác nặng sáng hôm sau",
+      ],
+    },
+  };
+  const product = productMap[id] ?? productMap[1];
+
+  return (
+    <div className="page-shell">
+      <Navbar />
+
+      <main className="container detail-page">
+        <section className="detail-layout">
+          <div className="detail-media">
+            <img src={product.image} alt={product.name} />
+          </div>
+
+          <div className="detail-content">
+            <span className="eyebrow">Product detail #{id}</span>
+            <h1>{product.name}</h1>
+            <p>{product.summary}</p>
+
+            <div className="detail-price-row">
+              <strong>{product.price}</strong>
+              <span>Tư vấn cá nhân hóa trước khi mua</span>
+            </div>
+
+            <ul className="detail-list">
+              {product.details.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+
+            <div className="hero-actions">
+              <Link className="primary-button" to="/products">
+                Quay lại danh mục
+              </Link>
+              <Link className="secondary-button" to="/about-us">
+                Xem thêm về VitaStore
+              </Link>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  );
+}
