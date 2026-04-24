@@ -1,0 +1,18 @@
+{
+  "name": "vitastore-workspace",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "vitastore-admin",
+    "vitastore-user"
+  ],
+  "scripts": {
+    "dev": "concurrently -n admin,user -c blue,green \"npm run dev --prefix vitastore-admin\" \"npm run dev --prefix vitastore-user\"",
+    "dev:admin": "npm run dev --prefix vitastore-admin",
+    "dev:user": "npm run dev --prefix vitastore-user",
+    "build": "npm run build --prefix vitastore-admin ; npm run build --prefix vitastore-user"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
